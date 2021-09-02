@@ -25,20 +25,17 @@ class Public::OrdersController < ApplicationController
     @order =Order.new
     @order.payment_method = params[:order][:payment_method]
     @order.carriage = 800
+    
     if @address_option == "0"
       @order.address = current_customer.address
       @order.postal_code = current_customer.postal_code
       @order.name = current_customer.first_name
     elsif @address_option == "1"
-      # @saved_address = Receiver.find_by(order_params[:order_address])
-      # @saved_address = Receiver.find_by(id: params[:order][:order_address])
       @receiver = Receiver.find(params[:order][:order_address])
       @order.address = @receiver.address
       @order.postal_code = @receiver.postal_code
       @order.name = @receiver.name
-
     elsif @address_option == "2"
-
       @order.postal_code = params[:order][:postal_code]
       @order.address = params[:order][:address]
       @order.name = params[:order][:name]
