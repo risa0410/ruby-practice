@@ -19,6 +19,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def comfirm
+    #復習すること
     @cart_items = current_customer.cart_items
     @address_option = params[:order][:address_option]
 
@@ -43,6 +44,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
+    #復習
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.carriage = 800
